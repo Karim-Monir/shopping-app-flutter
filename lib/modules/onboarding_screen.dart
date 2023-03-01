@@ -102,7 +102,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: ()
                   {
                     if(isLast){
-                      navigateToReplace(context, const ShopLoginScreen());
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
+                              (Route<dynamic> route) => false
+                      );
+                      /*navigateToReplace(context, const ShopLoginScreen());*/
                     } else {
                       boardingController.nextPage(
                         duration: const Duration(
@@ -127,7 +132,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Expanded(
             child: Image(
               image: AssetImage('${model.image}'),
-              /*fit: BoxFit.cover,*/
+            /*  fit: BoxFit.cover,*/
             ),
           ),
           /*const SizedBox(

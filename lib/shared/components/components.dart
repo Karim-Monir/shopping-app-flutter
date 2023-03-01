@@ -61,6 +61,15 @@ Widget defaultTextFormField({
       ),
     );
 
+
+Widget defaultTextButton({
+  required Function function,
+  required String text
+}) => TextButton(
+    onPressed: function(),
+    child: Text(text),
+);
+
 /*Widget buildTaskItem(Map model, context) => Dismissible(
   key: Key(model['id'].toString()),
   onDismissed: (direction){

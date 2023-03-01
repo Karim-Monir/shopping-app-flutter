@@ -73,6 +73,19 @@ flutter:
       fonts:
         - asset: assets/fonts/BelieveIt.ttf
 
+    - family: Dark_bold
+      fonts:
+            - asset: assets/fonts/dark_bold.ttf
+
+    - family: Dark_italic
+      fonts:
+            - asset: assets/fonts/dark_italic.ttf
+
+
+    - family: Dark_narrow
+      fonts:
+            - asset: assets/fonts/dark_narrow.ttf
+
 
 
   # To add assets to your application, add an assets section, like this:

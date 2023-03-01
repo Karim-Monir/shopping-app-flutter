@@ -14,7 +14,8 @@ class ShopAppCubit extends Cubit<ShopAppStates> {
       isDark = fromShared;
       emit(AppThemeState());
 
-    } else{
+    } else
+    {
       isDark = !isDark;
       CacheHelper.putData(key: 'isDark', value: isDark).then((value){
         emit(AppThemeState());

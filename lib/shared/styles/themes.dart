@@ -5,7 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import '../components/constants.dart';
 
 ThemeData darkTheme = ThemeData(
-  primarySwatch: defaultColor,
+  primarySwatch: Colors.blue,
   scaffoldBackgroundColor: HexColor('252526'),
   appBarTheme: AppBarTheme(
     titleTextStyle: const TextStyle(
@@ -41,7 +41,7 @@ ThemeData darkTheme = ThemeData(
 );
 
 ThemeData lightMode = ThemeData(
-  primarySwatch: defaultColor,
+  primarySwatch: Colors.blue,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
     titleTextStyle: TextStyle(
