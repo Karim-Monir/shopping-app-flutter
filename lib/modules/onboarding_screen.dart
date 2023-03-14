@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/modules/login_screen.dart';
 import 'package:shopping_app/shared/components/components.dart';
+import 'package:shopping_app/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../shared/components/constants.dart';
 
 class BoardingModel {
@@ -41,13 +41,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     ];
 
     bool isLast = false;
+    void submit(){
+      CacheHelper.saveData(key: 'onBoarding', value: true).then((value){
+        if(value!){
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
+                  (Route<dynamic> route) => false
+          );
+        }
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
         actions: [
           TextButton(
               onPressed: (){
-                navigateToReplace(context, const ShopLoginScreen());
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
+                        (Route<dynamic> route) => false
+                );
               },
               child: const Text('Skip'),
           ),
@@ -61,14 +76,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: PageView.builder(
                 onPageChanged: (int index)
                 {
-                  if(index == boarding.length - 1)
+                  if(index == 2)
                   {
                     setState(() {
                       isLast = true;
-                    });
-                  }else{
-                    setState(() {
-                      isLast = false;
                     });
                   }
                 },
@@ -78,6 +89,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     buildBoardingItem(boarding[index]),
                 itemCount: boarding.length,
               ),
+
             ),
             const SizedBox(
               height: 40.0,
@@ -99,23 +111,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 const Spacer(),
                 FloatingActionButton(
-                  onPressed: ()
-                  {
+                  onPressed: () {
                     if(isLast){
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
-                              (Route<dynamic> route) => false
-                      );
-                      /*navigateToReplace(context, const ShopLoginScreen());*/
+                      // print('is Last ===> $isLast');
+                      submit();
                     } else {
                       boardingController.nextPage(
                         duration: const Duration(
-                            milliseconds: 700
+                            milliseconds: 600
                         ),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
                     }
+                      /*navigateToReplace(context, const ShopLoginScreen());*/
+
                   },
                   child: const Icon(Icons.arrow_forward_ios),
                 ),

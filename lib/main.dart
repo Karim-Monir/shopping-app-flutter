@@ -8,8 +8,6 @@ import 'package:shopping_app/shared/network/remote/dio_helper.dart';
 import 'package:shopping_app/shared/styles/themes.dart';
 import 'modules/onboarding_screen.dart';
 
-
-
 void main() async
 {
   // To ensure everything before the run is done

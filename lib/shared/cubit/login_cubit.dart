@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/models/login_model.dart';
 import 'package:shopping_app/shared/cubit/states.dart';
 import 'package:shopping_app/shared/network/remote/dio_helper.dart';
 
@@ -11,7 +12,7 @@ class ShopAppLoginCubit extends Cubit<ShopAppStates>
   ShopAppLoginCubit() : super(AppLoginInitialState());
 
   static ShopAppLoginCubit get(context) => BlocProvider.of(context);
-
+  ShopUserLoginModel? loginModel;
   void userLogin
       ({
     required String email,
@@ -27,8 +28,12 @@ class ShopAppLoginCubit extends Cubit<ShopAppStates>
           'password': password
         },
     ).then((value){
-      print(value);
-      emit(AppLoginSuccessState());
+      // print(value);
+      loginModel = ShopUserLoginModel.fromJson(value?.data);
+      print(loginModel?.data?.token);
+      print(loginModel?.status);
+      print(loginModel?.message);
+      emit(AppLoginSuccessState(loginModel!));
     }).catchError((error){
       emit(AppLoginErrorState(error.toString()));
     });
