@@ -16,14 +16,16 @@ void main() async
   /*DioHelper.init();*/
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
-  bool isDark = true;
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+  print(onBoarding);
+  // bool isDark = true;
   //CacheHelper.getData(key: 'isDark');
-  runApp(ShopApp(isDark));
+  runApp(ShopApp());
 }
 
 class ShopApp extends StatelessWidget {
-  final bool isDark;
-  const ShopApp(this.isDark, {super.key});
+  //final bool isDark;
+  const ShopApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
 class ShopUserLoginModel{
-late bool status;
-late String message;
-late UserData data;
+ late bool status;
+ late String message;
+ UserData? data;
 
 ShopUserLoginModel.fromJson(Map<String, dynamic> json){
   status = json['status'];
   message = json['message'];
-  data = (json['data'] != null ? UserData.fromJason(json['data']) : null)!;
+  data = json['data'] != null ? UserData.fromJason(json['data']) : null;
 }
 }
 

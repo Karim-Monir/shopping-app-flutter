@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/modules/login_screen.dart';
-import 'package:shopping_app/shared/components/components.dart';
+// import 'package:shopping_app/shared/components/components.dart';
 import 'package:shopping_app/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../shared/components/constants.dart';
@@ -43,7 +43,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     bool isLast = false;
     void submit(){
       CacheHelper.saveData(key: 'onBoarding', value: true).then((value){
-        if(value!){
+        if(value == true){
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
@@ -57,13 +57,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: AppBar(
         actions: [
           TextButton(
-              onPressed: (){
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ShopLoginScreen()),
-                        (Route<dynamic> route) => false
-                );
-              },
+              onPressed: submit,
               child: const Text('Skip'),
           ),
         ],
@@ -140,7 +134,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           Expanded(
             child: Image(
-              image: AssetImage('${model.image}'),
+              image: AssetImage(model.image),
             /*  fit: BoxFit.cover,*/
             ),
           ),
@@ -148,7 +142,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             height: 30.0,
           ),*/
           Text(
-            '${model.title}',
+            model.title,
             style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
@@ -158,7 +152,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             height: 15.0,
           ),
           Text(
-            '${model.body}',
+            model.body,
             style: const TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.bold,
